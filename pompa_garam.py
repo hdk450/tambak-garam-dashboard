@@ -66,8 +66,10 @@ if st.button("🎯 **Simulasi Pengisian**", type="primary"):
         net = inflow - evap_step
         vol_filled[i] = min(vol_filled[max(0,i-1)] + net, V_target)
         evap_total[i] = evap_step
-        if vol_filled[i] >= V_target: break
+        if vol_filled[i] >= V_target: 
+            break   # ← Pastikan ini align dengan for
     
+    # Pastikan df_result di luar loop
     df_result = pd.DataFrame({
         'Waktu (jam)': time_sec[:i+1]/3600,
         'Volume Terisi (m³)': vol_filled[:i+1],
